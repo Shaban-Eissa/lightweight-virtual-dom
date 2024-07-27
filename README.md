@@ -2,48 +2,35 @@
 
 This project is a simple demonstration of virtual DOM implementation. It showcases how to manage component updates and re-rendering using a virtual DOM approach without relying on external libraries or frameworks.
 
+https://github.com/user-attachments/assets/cd1c4f3e-1e6e-4f12-bd11-dc976148caae
+
+
 ## 🗂️ Overview
 
 In this demo, we create a minimal virtual DOM implementation to render and update a list of emojis. The project consists of a few key files:
 
 * **`app.js`**: Contains the main logic for rendering the application and updating the state.
-* **`vdom.js`**: Implements the virtual DOM diffing and rendering functions.
-* **`component.js`**: Provides a base class for components.
+* **`v-dom.js`**: Implements the virtual DOM diffing and rendering functions.
 
-## 🏗️ Project Structure
 
-### `app.js`
+## 🛠️ How It Works
 
-The main application logic is contained in this file. It includes:
+This project implements a simple virtual DOM and diffing algorithm to manage and update UI efficiently.
 
-1. **State Management**: The state is managed externally to ensure proper updates. We use a global variable `peopleState` to store the list of emojis.
+1. **Virtual DOM Basics**: Inspired by the React framework, our virtual DOM represents the UI as a lightweight JavaScript object. It avoids full re-renders by only updating parts of the DOM that have changed. The `hyperscript` function creates virtual DOM nodes, and the `renderNode` function converts these nodes into actual DOM elements.
     
-2. **Functional Components**:
+2. **Rendering**: The `renderComponent` function handles the rendering of components and their updates. It uses the virtual DOM to determine which parts of the actual DOM need to be changed. The `diff` function compares the current and new virtual DOMs to update only the necessary parts of the DOM efficiently.
     
-    * **`App`**: The root component that renders the `People` component.
-    * **`People`**: Displays a list of emojis and updates the list every second.
-3. **Rendering**:
-    
-    * **`render`**: A function that initializes rendering and updates the DOM based on virtual nodes.
-4. **Updating List**:
-    
-    * **`updateList`**: A function that adds one new emoji to the list every second and triggers a re-render.
+3. **Diffing Algorithm**: The `diff` function improves performance by minimizing re-renders. It detects changes in the virtual DOM and updates only the affected parts of the real DOM. This approach ensures that updates are fast and efficient, avoiding the need for a full re-render of the entire application.
 
-### `vdom.js`
+4. **Hyperscript Function**: This function creates virtual DOM nodes. It takes a node type (like 'div' or 'h1'), attributes, and children as arguments and returns an object that represents the virtual DOM structure. This object mimics the structure of real DOM elements but is used for internal processing rather than actual rendering.
+   
+5. **Virtual DOM Rendering**: This part handles the conversion of virtual DOM nodes into real DOM elements. It includes functions that:
+        * Convert a virtual DOM node into a corresponding real DOM element.
+        * Update existing DOM elements based on changes in the virtual DOM, minimizing the amount of direct DOM manipulation needed.
+        * Use a diffing algorithm to efficiently update only the parts of the DOM that have changed.
 
-This file contains the core virtual DOM implementation:
-
-1. **`renderNode`**:
-    
-    * Converts virtual nodes to actual DOM elements.
-    * Handles both string nodes (text) and functional components.
-2. **`diff`**:
-    
-    * Compares the existing DOM with a new virtual node and updates the DOM accordingly.
-    * Handles cases where the number of children changes or components need to be updated.
-3. **`renderComponent`**:
-    
-    * Renders a component by calling its function, generating the virtual DOM, and updating the actual DOM.
+6. **HTML Setup**:Provides the basic HTML structure where your JavaScript application will be rendered. It includes a container element (like a `div` with the id "root") where the application is mounted. The compiled JavaScript code is linked in this HTML file to execute the virtual DOM and application logic.
 
 
 ## 🚀 Usage
@@ -80,14 +67,6 @@ This file contains the core virtual DOM implementation:
     
     * Open `index.html` in your web browser to see the demo in action.
 
-## 🛠️ How It Works
-
-* **Virtual DOM**: The virtual DOM is a lightweight representation of the actual DOM. Changes to the virtual DOM are compared with the current DOM (diffing), and only the necessary updates are made to the actual DOM.
-    
-* **Functional Components**: Components are implemented as functions that return virtual nodes. They handle rendering and state updates without requiring a class-based approach.
-    
-* **State Management**: State is managed externally in this demo to simplify the functional component implementation. Updates to the state trigger re-rendering of the affected components.
-    
 
 ## ⚠️ Notes
 
