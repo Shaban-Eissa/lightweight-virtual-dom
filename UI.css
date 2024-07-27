@@ -1,0 +1,20 @@
+.app {
+  text-align: center;
+  font-family: Arial;
+  color: #444;
+  width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+  font-size: 50px;
+}
+li {
+  display: inline;
+}
